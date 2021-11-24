@@ -1,12 +1,4 @@
-/*!
-* Start Bootstrap - Agency v7.0.10 (https://startbootstrap.com/theme/agency)
-* Copyright 2013-2021 Start Bootstrap
-* Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-agency/blob/master/LICENSE)
-*/
-//
-// Scripts
-// 
-
+ 
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -52,3 +44,13 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+
+function MostrarLogin(){
+    $("#ModalRegistroInspeccion").modal();
+    $('#ModalRegistroInspeccion').on('shown.bs.modal', function () {
+        $('#ModalRegistroInspeccion').trigger('focus')
+      })
+   // alert("Holis")
+    
+}

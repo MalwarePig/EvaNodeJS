@@ -1,6 +1,6 @@
 const express = require('express'); //guardar express en una variable de servidor
 const router = express.Router(); //usar modulo de router de ex´press
-const UserController = require('../Controllers/UserController');
+const UserController = require('../controllers/UserController');
 
 /////////////////////////////////////////////////////////////////////////// USUARIOS /////////////////////////////////////////////////////////////////////////////////
 //Acceder a login
@@ -10,8 +10,11 @@ router.get('/', (req, res) => {
 });
 
 //Iniciar logueo
-router.post('/Login', UserController.login);
- 
+router.get('/Login', (req, res) => {
+	//res.send('holoo');
+	res.render('Login/LoginAdmin.html');
+});
+
 //Acceder formulario Registrar usuario
 
 //Iniciar logueo
