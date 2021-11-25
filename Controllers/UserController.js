@@ -1,48 +1,82 @@
 const Controller = {};
 const OS = require("os");
 /////////////////////////////////////////////////////////////////////--------------- REGISTRO ----------------------/////////////////////////////////////////////////////////////////////
-Controller.save = (req,res) => {
+Controller.save = (req, res) => {
     const data = req.body;
     const nombre = req.body.Planta;
-    req.getConnection((err,conn) => {
+    req.getConnection((err, conn) => {
 
-        conn.query('INSERT INTO usuarios set ?',[data], (err, ot) =>{
+        conn.query('INSERT INTO usuarios set ?', [data], (err, ot) => {
             res.redirect('/Signup');
         });
     })
-   /* console.log(req.body);//se obtienen los datos del formulario a traves del req.body
-    res.send('works');*/
+    /* console.log(req.body);//se obtienen los datos del formulario a traves del req.body
+     res.send('works');*/
 }
 
 
-Controller.EliminarUsuario = (req,res) => {
+Controller.EliminarUsuario = (req, res) => {
     const data = req.body;
     const nombre = req.body.Planta;
-    req.getConnection((err,conn) => {
+    req.getConnection((err, conn) => {
 
         var id = Object.values(data)[0].id;
 
-        conn.query("delete from usuarios WHERE id = '"+id+"'", (err, ot) =>{
+        conn.query("delete from usuarios WHERE id = '" + id + "'", (err, ot) => {
             res.json(true);
         });
     })
-   /* console.log(req.body);//se obtienen los datos del formulario a traves del req.body
-    res.send('works');*/
+    /* console.log(req.body);//se obtienen los datos del formulario a traves del req.body
+     res.send('works');*/
 }
 
 /////////////////////////////////////////////////////////////////////--------------- LOGIN ----------------------/////////////////////////////////////////////////////////////////////
-Controller.login = (req,res) => {
-    res.render('../Views/Login/LoginAdmin.html', {
-        data: "user"
-    });
+Controller.Login = (req, res) => {
+    const data = req.body; //TRAE TODO EL OBJETO
+    let log_username = Object.values(data)[0].username;
+    let log_pass = Object.values(data)[0].username;
+
+    req.getConnection((err, conn) => {
+        conn.query('SELECT * FROM login WHERE username = ? AND pass = ?', [log_username, log_pass], (error, results, fields) => {
+            if (error) {
+                console.log(error);
+                res.redirect('/');
+                console.log('Error al iniciar sesion' + error);
+            }
+            else if (Object.keys(results).length > 0)//si contiene almenso 1 resultado entra
+            {
+                if (log_pass == results[0].pass) {//si las contraseñas coinciden entran
+                    req.session.loggedin = true;
+                    req.session.id = results[0].id;//Obtener id de la consulta;
+                    req.session.username = results[0].username;//Obtener contraseña de la consulta
+                    req.session.level = results[0].level;//Obtener nivel de la consulta
+                    console.log('usuarios');
+                    console.log(results);
+                    let data = {
+                        username: results[0].username,
+                        pass: results[0].pass,
+                        level: results[0].level,
+                    }
+                    res.json(data);
+
+                } else {//si las contraseñas no coinciden
+                    console.log('datos error');
+                    res.json(false);
+                }
+            } else {// sin resultados
+                res.json(null);
+            }
+            //response.end();
+        });
+    })
 }
 
 /////////////////////////////////////////////////////////////////////--------------- SignUp ----------------------/////////////////////////////////////////////////////////////////////
-Controller.SignUp = (req,res) => {
-    req.getConnection((err,conn) => {
+Controller.SignUp = (req, res) => {
+    req.getConnection((err, conn) => {
         if (req.session.loggedin) {
-            conn.query('SELECT * FROM usuarios',[], (error, results, fields) =>{
-                if(error){
+            conn.query('SELECT * FROM usuarios', [], (error, results, fields) => {
+                if (error) {
                     console.log(error);
                     res.redirect('/');
                     console.log('error en query');
@@ -54,29 +88,29 @@ Controller.SignUp = (req,res) => {
                     });
                 }
             });
-       } else {
-        res.redirect('/');
-       }      
+        } else {
+            res.redirect('/');
+        }
     })
 }
 
 /////////////////////////////////////////////////////////////////////--------------- HOME ----------------------/////////////////////////////////////////////////////////////////////
-Controller.HOME = (req,res) => {
-    req.getConnection((err,conn) => {
+Controller.HOME = (req, res) => {
+    req.getConnection((err, conn) => {
         if (req.session.loggedin) {
             console.log("EN home");
-                conn.query("SELECT * FROM usuarios WHERE usuario = '"+ req.session.username+"'", (err, user) => {
-                    if (err) {
-                        console.log('Error de lectura');
-                    }
-                    console.log(user);
-                    res.render('index.html', {
-                        data: user
-                    });
+            conn.query("SELECT * FROM usuarios WHERE usuario = '" + req.session.username + "'", (err, user) => {
+                if (err) {
+                    console.log('Error de lectura');
+                }
+                console.log(user);
+                res.render('index.html', {
+                    data: user
                 });
-       } else {
-        res.redirect('/');
-       }      
+            });
+        } else {
+            res.redirect('/');
+        }
     })
 }
 
@@ -124,7 +158,7 @@ Controller.login = (req,res) => {
 
                         conn.query("SELECT * FROM usuarios WHERE usuario = '"+username+"'", (err, user) => {
                             if (err) {
-                 
+
                                 console.log('Error de lectura ' +err);
                             }
                            let ip = Object.values(req)[33].slice(7);
@@ -133,7 +167,7 @@ Controller.login = (req,res) => {
                             res.render('../Views/Login/LoginAdmin.html', {
                                 data: user
                             });
-                            
+
                         });
                     //res.send('works');
                 }else{//si las contraseñas no coinciden
@@ -143,9 +177,9 @@ Controller.login = (req,res) => {
             {
                 res.redirect('/');
                 console.log('Error usaurio o contraseña' +error);
-			}			
-			//response.end();
-        });        
+            }
+            //response.end();
+        });
     })
 }
 */

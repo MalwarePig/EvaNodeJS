@@ -5,16 +5,13 @@ const UserController = require('../controllers/UserController');
 /////////////////////////////////////////////////////////////////////////// USUARIOS /////////////////////////////////////////////////////////////////////////////////
 //Acceder a login
 router.get('/', (req, res) => {
-	//res.send('holoo');
 	res.render('index.html');
 });
 
-//Iniciar logueo
-router.get('/Login', (req, res) => {
-	//res.send('holoo');
-	res.render('Login/LoginAdmin.html');
-});
-
+//Registrar usuario en db
+router.post('/Login', UserController.Login);
+ 
+ 
 //Acceder formulario Registrar usuario
 
 //Iniciar logueo
@@ -36,9 +33,13 @@ router.get('/LogueoActivo', (req, res) => {
 //Carga pagina principal
 router.get('/home', UserController.HOME);
 
-/////////////////////////////////////////////////////////////////////////// ENTRAR A cPlaner /////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////////////// ENTRAR A PANEL ADMIN /////////////////////////////////////////////////////////////////////////////
 
-
+router.get('/Panel', (req, res) => {
+	//res.send('holoo');
+	console.log(req.session.area)
+	res.render('PanelAdmin/PanelAdmin.html',{title: 'EVA'});
+});
 
 
 

@@ -1,4 +1,4 @@
- 
+
 window.addEventListener('DOMContentLoaded', event => {
 
     // Navbar shrink function
@@ -12,7 +12,6 @@ window.addEventListener('DOMContentLoaded', event => {
         } else {
             navbarCollapsible.classList.add('navbar-shrink')
         }
-
     };
 
     // Shrink the navbar 
@@ -46,11 +45,10 @@ window.addEventListener('DOMContentLoaded', event => {
 });
 
 
-function MostrarLogin(){
+function MostrarLogin() {
     $("#ModalRegistroInspeccion").modal();
     $('#ModalRegistroInspeccion').on('shown.bs.modal', function () {
         $('#ModalRegistroInspeccion').trigger('focus')
-      })
-   // alert("Holis")
-    
+    })
+    // alert("Holis")
 }
