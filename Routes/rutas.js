@@ -41,6 +41,12 @@ router.get('/Panel', (req, res) => {
 	res.render('PanelAdmin/PanelAdmin.html',{title: 'EVA'});
 });
 
+router.get('/Calendario', (req, res) => {
+	//res.send('holoo');
+	console.log(req.session.area)
+	res.render('Calendario/Calendario.html',{title: 'EVA'});
+});
+
 
 
 

@@ -1,0 +1,64 @@
+<div class="container shadow-lg p-3 rounded">
+    <div class="card text-center col-md-12 col-s-12">
+        <div class="card-body">
+            <form id="Formulario">
+                <div class="form-group text-dark ">
+                    <div class="row">
+                        <div class="col-2">
+                            <label for="recipient-name" class="col-form-label">Lugar:</label>
+                            <select required id="Lugar" name="Area" class="form-control">
+                                <option value="Salón" selected>Salón</option>
+                                <option value="Domicilio">Domicilio</option>
+                            </select>
+                        </div>
+
+                        <div class="col-2">
+                            <label for="recipient-name" class="col-form-label">Membresia:</label>
+                            <input type="text" class="form-control" id="Membresia" value="#">
+                        </div>
+
+                        <div class="col">
+                            <label for="recipient-name" class="col-form-label">Nombre:</label>
+                            <input type="text" class="form-control" id="Nombre">
+                        </div>
+
+                        <div class="col-2">
+                            <label for="recipient-name" class="col-form-label">Telefono:</label>
+                            <input type="number" class="form-control" id="Telefono">
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+
+                        <div class="col-2">
+                            <label for="recipient-name" class="col-form-label">Fecha de cita:</label>
+                            <input type="date" class="form-control" id="FechaCita" placeholder="dd / mm / aaaa hh:mm">
+                        </div>
+
+                        <div class="col">
+                            <label for="recipient-name" class="col-form-label">Dirección:</label>
+                            <input type="text" class="form-control" id="Direccion">
+                        </div>
+                        <div class="col-2">
+                            <label for="recipient-name" class="col-form-label">Hora:</label>
+                            <input type="time" class="form-control" id="N_CantidadOT">
+                        </div>
+
+                    </div>
+                    <br>
+                    <div class="form-row">
+                        <div class="col text-center">
+                            <button type="button" id="Excel" name="Excel" class="btn btn-success "
+                                onclick="ActualizarOrden()" data-toggle="tooltip" data-placement="top" title="Excel"><i
+                                    class="fas fa-save"></i></button>
+                        </div>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+
+ 

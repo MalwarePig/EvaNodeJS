@@ -3,7 +3,6 @@
 
 <head>
     <%- include ('../partials/head.html') %>
-        <!------incluir cabezera navegacion----->
 
         <!--===============================================================================================-->
         <link rel="icon" type="image/png" href="images/icons/favicon.ico" />
@@ -14,8 +13,13 @@
 </head>
 
 <body>
+    <div class="p-3">
+        <a href="/"><img width="300" height:"auto" src="images/assets/img/navbar-logo.svg" alt="Portada" /></a>
+    </div>
+    
 <!--===============================================MENU================================================-->
-    <ul class="mt-4 nav justify-content-center">
+    <ul class="mt- nav justify-content-center">
+ 
         <li class="nav-item active">
             <button onclick="openPage('A1', this, ' #5d8250 ')" class="nav-link danger  active" id="v-pills-home-tab"
                 data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab"
@@ -47,10 +51,10 @@
     <!--===============================================CONTENIDO================================================-->
     <div class="tab-content " id="v-pills-tabContent">
         <div class="tabcontent tab-pane fade show active" role="tabpanel" aria-labelledby="v-pills-home-tab" id="A1">
-            <%- include ('Servicios.html') %>
+            <%- include ('Citas.html') %>
         </div>
         <div class="tabcontent tab-pane show fade" role="tabpanel" aria-labelledby="v-pills-profile-tab" id="A2">
-            <p>2</p>
+            <%- include ('Servicios.html') %>
         </div>
         <div class="tabcontent tab-pane show fade" role="tabpanel" aria-labelledby="v-pills-messages-tab" id="A3">
             <p>3</p>
