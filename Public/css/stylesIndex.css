@@ -37,7 +37,7 @@
   --bs-gray-900: #212529;
   --bs-primary: #ffc800;
   --bs-secondary: #6c757d;
-  --bs-success: #198754;
+  --bs-success: #286448;
   --bs-info: #0dcaf0;
   --bs-warning: #ffc800;
   --bs-danger: #dc3545;
@@ -2219,9 +2219,9 @@ progress {
 .form-control:focus {
   color: #212529;
   background-color: #fff;
-  border-color: #ffe480;
+  border-color: #7d78ac;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(255, 200, 0, 0.25);
+  box-shadow: 0 0 0 0.25rem rgba(176, 135, 196, 0.25);
 }
 .form-control::-webkit-date-and-time-value {
   height: 1.5em;

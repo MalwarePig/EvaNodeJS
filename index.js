@@ -20,8 +20,8 @@ app.use(morgan('dev'));//muestra los mensajes en consola de las cargas y peticio
 app.use(myConnection(mysql,{
      //host: '192.168.2.8',
      host:'localhost',
-     user: 'Soporte', //user: 'root',
-     password: 'Soporte1702861',
+     user: 'root', //user: 'root',
+     password: '1702861',
      port: 3306,
      database: 'eva'
 }, 'single'))

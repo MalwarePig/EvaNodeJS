@@ -10,9 +10,30 @@ CREATE TABLE `login` (
 	level varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
+ 
+CREATE TABLE `Clientes` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `Name` VARCHAR(60) DEFAULT NULL,
+  `addres` VARCHAR(120) DEFAULT NULL,
+	phone varchar(15) DEFAULT NULL,
+	typeCard varchar(15) DEFAULT NULL,
+	numberCard varchar(15) DEFAULT NULL,
+	idLogin varchar(15) DEFAULT NULL,
+	status varchar(15) DEFAULT 'activa',
+  PRIMARY KEY (`id`)
+)
 
-INSERT INTO login(username,pass,level)VALUES('admin','admin','admin');
-SELECT * FROM login
+ 
+
+
+
+
+
+
+
+
+
+
 
 SELECT * FROM almacen WHERE almacen = 'Gaveta'
 
@@ -44,4 +65,4 @@ CREATE TABLE `requisiciones` (
   `Estatus` varchar(20) DEFAULT NULL,
     `FechaReq` datetime DEFAULT (CURDATE()),
   PRIMARY KEY (`id`)
-)
+).
