@@ -9,18 +9,20 @@ function RegistrarCliente() {
         Usuario: document.getElementById("new_Usuario").value,
         Contraseña: document.getElementById("new_Contraseña").value
     }
-console.info(dataCliente)
+    console.info(dataCliente)
     $.post("/RegistrarCliente", // inicia la lista de ot en el flujo de produccion
         {
             dataCliente
         }, // data to be submit
         function (objeto, estatus) { // success callback
             //console.log("objeto: " + objeto + "Estatus: " + estatus);
+            CargarClientes()
             if (objeto == true) {
-                alert("Registro correcto");
+                CargarClientes();
                 $('#FormularioCliente')[0].reset();
-            }else{ 
+            } else {
                 $('#FormularioCliente')[0].reset();
+                alert("Erro en registro");
             }
         });
 }
@@ -35,7 +37,7 @@ function CargarClientes() {
             let TotalRegistros = data.length;
             var Tabla = document.getElementById('TablaClientes').getElementsByTagName('tbody')[0];
             for (let index = 0; index < TotalRegistros; index++) {
-                let id = data[index].id;
+                let id = data[index].idLogin;
                 let Nombre = data[index].Name || '-';
                 let Dirección = data[index].addres;
                 let Telefono = data[index].phone;
@@ -43,8 +45,8 @@ function CargarClientes() {
                 let Nip = data[index].numberCard;
                 let username = data[index].username;
                 let pass = data[index].pass;
- 
-                let Arreglo = [id, Nombre,Dirección,Telefono,Membresia,Nip,username,pass];
+
+                let Arreglo = [id, Nombre, Dirección, Telefono, Membresia, Nip, username, pass];
                 // inserta una fila al final de la tabla
                 var newRow = Tabla.insertRow(Tabla.rows.length);
                 for (var x = 0; x < (Arreglo.length + 1); x++) {
@@ -53,16 +55,16 @@ function CargarClientes() {
                     var newCell = newRow.insertCell(x);
                     newRow.setAttribute("id", "ncRows" + index); //se asigna id al incrementar cada fila +1 para contar el encabezado
                     if (x == 0) { //Ingresar el id
-                        newCell.innerHTML = '<input required type="text" id="tableClienteid' + index + '" class="form-control" value="' + Arreglo[x] + '" readonly style="display: none"></input>';
+                        newCell.innerHTML = '<input required type="text" id="ncId' + index + '" class="form-control" value="' + Arreglo[x] + '" readonly style="display: none"></input>';
                     } else if (x == 6) { //Ingresar el id
-                        newCell.innerHTML = '<input required type="text" id="tableClienteUser' + index + '" class="form-control" value="' + Arreglo[x] + '" readonly style="display: none"></input>';
-                    }  else if (x == 7) { //Ingresar el id
-                        newCell.innerHTML = '<input required type="text" id="tableClientePass' + index + '" class="form-control" value="' + Arreglo[x] + '" readonly style="display: none"></input>';
-                    } 
-                     else if (x == 8) { //Si termina de registrar datos crear el boton
+                        newCell.innerHTML = '<input required type="text" id="ncUser' + index + '" class="form-control" value="' + Arreglo[x] + '" readonly style="display: none"></input>';
+                    } else if (x == 7) { //Ingresar el id
+                        newCell.innerHTML = '<input required type="text" id="ncPass' + index + '" class="form-control" value="' + Arreglo[x] + '" readonly style="display: none"></input>';
+                    }
+                    else if (x == 8) { //Si termina de registrar datos crear el boton
                         var newCell = newRow.insertCell(8); //CREAR CELDA
-                        newCell.innerHTML = '<button id="' + index + '" class="btn btn-dark" name="btn" data-bs-toggle="modal" href="#modEditarCliente" onclick=Seleccion(' + (index + 1) + ')> <i class="fas fa-edit"></i> </button>'
-                                           +'<button id="EliminarTi' + index + '" class="btn btn-danger" name="btn" onclick=EliminarTrabajoIn(' + (index + 1) + ')><i class="fas fa-minus-square"></i></button>'; 
+                        newCell.innerHTML = '<button id="' + index + '" class="btn btn-dark" name="btn" data-bs-toggle="modal" href="#modEditarCliente" onclick=EditarCliente(' + (index) + ')> <i class="fas fa-edit"></i> </button>'
+                            + '<button id="EliminarTi' + index + '" class="btn btn-danger" name="btn" onclick=EliminarTrabajoIn(' + (index) + ')><i class="fas fa-minus-square"></i></button>';
                     } else {
                         var newText = document.createTextNode(Arreglo[x]);
                         newCell.appendChild(newText);
@@ -73,8 +75,82 @@ function CargarClientes() {
     }); //Ajax 
 }
 
+/*============================================== Editar Clientes ===============================================*/
+function EditarCliente(variable) {
+    Registro = document.getElementById("TablaClientes");
 
+    let id = document.getElementById("ncId" + (variable)).value; //Obtiene el valor de Producto
+    document.getElementById("editId").value = id;
+    let user = document.getElementById("ncUser" + (variable)).value; //Obtiene el valor de Producto
+    document.getElementById("editUsuario").value = user;
+    let pass = document.getElementById("ncPass" + (variable)).value; //Obtiene el valor de Producto
+    document.getElementById("editContraseña").value = pass;
+    let Nombre = Registro.rows[(variable + 1)].cells[1].childNodes[0].nodeValue; //Obtiene el valor de Producto
+    document.getElementById("editNombre").value = Nombre;
+    var Dirección = Registro.rows[(variable + 1)].cells[2].childNodes[0].nodeValue; //Obtiene el valor de Producto
+    document.getElementById("editDireccion").value = Dirección;
 
-function Seleccion(x){
+    var Telefono = Registro.rows[(variable + 1)].cells[3].childNodes[0].nodeValue; //Obtiene el valor de Producto
+    document.getElementById("editTelefono").value = Telefono;
 
+    var Membresia = Registro.rows[(variable + 1)].cells[4].childNodes[0].nodeValue; //Obtiene el valor de Producto
+    document.getElementById("editMembresia").value = Membresia;
+
+    var Nip = Registro.rows[(variable + 1)].cells[5].childNodes[0].nodeValue; //Obtiene el valor de Producto
+    document.getElementById("editNip").value = Nip;
+
+    console.log(id, user, pass, Nombre, Dirección, Telefono, Membresia, Nip);
 }
+
+/*============================================== Editar Clientes ===============================================*/
+function ActualizarCliente() {
+    let dataCliente = {
+        Nombre: document.getElementById("editNombre").value,
+        Direccion: document.getElementById("editDireccion").value,
+        Telefono: document.getElementById("editTelefono").value,
+        Membresia: document.getElementById("editMembresia").value,
+        Nip: document.getElementById("editNip").value,
+        user: document.getElementById("editUsuario").value,
+        pass: document.getElementById("editContraseña").value,
+        idLogin: document.getElementById("editId").value
+    }
+
+    $.post("/ActualizarCliente", // inicia la lista de ot en el flujo de produccion
+        {
+            dataCliente
+        }, // data to be submit
+        function (objeto, estatus) { // success callback
+            //console.log("objeto: " + objeto + "Estatus: " + estatus);
+            CargarClientes()
+            if (objeto == true) {
+                CargarClientes();
+                $('#FormularioCliente')[0].reset();
+            } else {
+                $('#FormularioCliente')[0].reset();
+                alert("Erro en registro");
+            }
+        });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

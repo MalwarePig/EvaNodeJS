@@ -113,23 +113,23 @@
                             <div class="form-row">
                                 <div class="col">
                                     <label for="recipient-name" class="col-form-label">Nombre:</label>
-                                    <input type="text" class="form-control" id="new_Nombre" value="Sergio Mañas">
+                                    <input type="text" class="form-control" id="editNombre" value="Sergio Mañas">
                                 </div>
 
                                 <div class="col">
                                     <label for="recipient-name" class="col-form-label">Dirección:</label>
-                                    <input type="text" class="form-control" id="new_Direccion"
+                                    <input type="text" class="form-control" id="editDireccion"
                                         value="China 612 Col Esperanza Nl">
                                 </div>
 
                                 <div class="col">
                                     <label for="recipient-name" class="col-form-label">Telefono:</label>
-                                    <input type="input" class="form-control" id="new_Telefono" value="81-26156944">
+                                    <input type="input" class="form-control" id="editTelefono" value="81-26156944">
                                 </div>
 
                                 <div class="col">
                                     <label for="recipient-name" class="col-form-label">Tipo membresia</label>
-                                    <select required id="new_Membresia" name="Area" class="form-control">
+                                    <select required id="editMembresia" name="Area" class="form-control">
                                         <option value="Bronce" selected>Bronce</option>
                                         <option value="Plata">Plata</option>
                                         <option value="Oro">Oro</option>
@@ -138,17 +138,22 @@
 
                                 <div class="col">
                                     <label for="recipient-name" class="col-form-label">#Nip:</label>
-                                    <input type="text" class="form-control" id="new_Nip" value="E-69">
+                                    <input type="text" class="form-control" id="editNip" value="E-69">
                                 </div>
 
                                 <div class="col">
                                     <label for="recipient-name" class="col-form-label">Usuario:</label>
-                                    <input type="text" class="form-control" id="new_Usuario" value="root">
+                                    <input type="text" class="form-control" id="editUsuario" value="root">
                                 </div>
 
                                 <div class="col">
                                     <label for="recipient-name" class="col-form-label">Contraseña:</label>
-                                    <input type="text" class="form-control" id="new_Contraseña" value="1702861">
+                                    <input type="text" class="form-control" id="editContraseña" value="1702861">
+                                </div>
+
+                                <div class="col">
+                                    <label for="recipient-name" class="col-form-label">id:</label>
+                                    <input type="text" class="form-control" id="editId">
                                 </div>
 
                             </div>
@@ -158,7 +163,7 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-light" onclick="RegistrarOrden()"
+                    <button type="button" class="btn btn-light" onclick="ActualizarCliente()"
                         data-dismiss="modal">Guardar</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
                 </div>

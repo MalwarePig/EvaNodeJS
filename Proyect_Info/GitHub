@@ -17,6 +17,4 @@ git diff index.html (Muestra las cambios entre versiones)
 ================================= COMANDOS GIT DOWN ======================================
 Git clone link (Descargar el repositorio)
 git pull git remote add origin https://github.com/MalwarePig/EvaNodeJS >>(Obtiene actualizaciones en línea y las fusiona con tu trabajo local);
-
-
-
+ 

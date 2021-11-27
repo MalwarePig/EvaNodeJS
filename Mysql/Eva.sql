@@ -10,7 +10,9 @@ CREATE TABLE `login` (
 	level varchar(15) DEFAULT NULL,
   PRIMARY KEY (`id`)
 )
- 
+
+INSERT INTO login(username,pass,level)VALUES('admin','admin','admin')
+ SELECT * FROM login
 CREATE TABLE `Clientes` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `Name` VARCHAR(60) DEFAULT NULL,

@@ -32,11 +32,6 @@ router.get('/LogueoActivo', (req, res) => {
 
 //Carga pagina principal
 router.get('/home', UserController.HOME);
-/////////////////////////////////////////////////////////////////////////// Clientes ///////////////////////////////////////////////////////////////////////////////
-//Crear Cliente
-router.post('/RegistrarCliente', ClientesController.RegistrarCliente);
-//Cargar Clientes
-router.get('/CargarClientes', ClientesController.CargarClientes);
 /////////////////////////////////////////////////////////////////////////// ENTRAR A PANEL ADMIN /////////////////////////////////////////////////////////////////////////////
 
 router.get('/Panel', (req, res) => {
@@ -50,6 +45,16 @@ router.get('/Calendario', (req, res) => {
 	console.log(req.session.area)
 	res.render('Calendario/Calendario.html',{title: 'EVA'});
 });
+/////////////////////////////////////////////////////////////////////////// Clientes ///////////////////////////////////////////////////////////////////////////////
+//Crear Cliente
+router.post('/RegistrarCliente', ClientesController.RegistrarCliente);
+//Cargar Clientes
+router.get('/CargarClientes', ClientesController.CargarClientes);
+//Actualizar Cliente
+router.post('/ActualizarCliente', ClientesController.ActualizarCliente);
+
+
+
 
 
 

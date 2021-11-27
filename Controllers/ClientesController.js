@@ -19,7 +19,7 @@ Controller.RegistrarCliente = (req, res) => {
                 if (err) {
                     console.log('Error al descontar almacen' + err);
                 }else{
-
+                    res.json(true)
                 }
             });
              
@@ -39,7 +39,7 @@ Controller.CargarClientes = (req, res) => {
                 if (err) {
                     console.log('Error al descontar almacen' + err);
                 }else{
-                    console.log(rows[0])
+                   /*  console.log(rows[0]) */
                     res.json(rows[0])                
                 }
             });
@@ -48,4 +48,38 @@ Controller.CargarClientes = (req, res) => {
         res.render('Admin/Login.html');
     }
 };
+
+
+/////////////////////////////////////////////////////////////////////------- Actualizar Cliente -------/////////////////////////////////////////////////////////////////////
+Controller.ActualizarCliente = (req, res) => {
+    if (req.session.loggedin) {
+        req.getConnection((err, conn) => {
+            const data = req.body; //TRAE TODO EL OBJETO
+ 
+            let Nombre = Object.values(data)[0].Nombre;
+            let Direccion = Object.values(data)[0].Direccion;
+            let Telefono = Object.values(data)[0].Telefono;
+            let Membresia = Object.values(data)[0].Membresia;
+            let Nip = Object.values(data)[0].Nip;
+            let Usuario = Object.values(data)[0].user;
+            let Contraseña = Object.values(data)[0].pass;
+            let id = Object.values(data)[0].idLogin;
+  
+            console.log(Nombre,Direccion,Telefono,Membresia,Nip)
+
+            conn.query("call ActualizarCliente('"+Nombre+"','"+Direccion+"','"+Telefono+"','"+Membresia+"','"+Nip+"','"+Usuario+"','"+Contraseña+"',"+id+");", true, (err, rows, fields) => {
+                if (err) {
+                    console.log('Error al descontar almacen' + err);
+                }else{
+                    console.log(fields)
+                    //res.json(rows[0])                
+                }
+            });
+        });
+    } else {
+        res.render('Admin/Login.html');
+    }
+};
+
+
 module.exports = Controller;
